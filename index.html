@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+        <style>
+        #map {
+            width: 85%;
+            height: 851px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-10">
+
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/P_Oriente_Lotes_1.js"></script>
+        <script src="data/Trazado_de_Canales_Drenaje_Actual_2.js"></script>
+        <script src="data/Trazadodecanalesparaestudio_3.js"></script>
+        <script src="data/PuntosAjuste_4.js"></script>
+      <!--   bosstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[4.488299699964918,-72.90277029071345],[4.549105574182261,-72.82099696408133]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_GooglecnNormal_0');
+        map.getPane('pane_GooglecnNormal_0').style.zIndex = 400;
+        var layer_GooglecnNormal_0 = L.tileLayer('http://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}', {
+            pane: 'pane_GooglecnNormal_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.google.com/intl/zh-CN_cn/permissions/geoguidelines/attr-guide.html">地图数据 ©2016 Google</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 21
+        });
+        layer_GooglecnNormal_0;
+        map.addLayer(layer_GooglecnNormal_0);
+        function pop_P_Oriente_Lotes_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CCP'] !== null ? autolinker.link(feature.properties['CCP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nombre'] !== null ? autolinker.link(feature.properties['nombre'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['areaneta'] !== null ? autolinker.link(feature.properties['areaneta'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['siembra'] !== null ? autolinker.link(feature.properties['siembra'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['palmas'] !== null ? autolinker.link(feature.properties['palmas'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['material'] !== null ? autolinker.link(feature.properties['material'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['densidad'] !== null ? autolinker.link(feature.properties['densidad'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['estado'] !== null ? autolinker.link(feature.properties['estado'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fkplantaci'] !== null ? autolinker.link(feature.properties['fkplantaci'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['perimetro'] !== null ? autolinker.link(feature.properties['perimetro'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['generacion'] !== null ? autolinker.link(feature.properties['generacion'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sector0'] !== null ? autolinker.link(feature.properties['sector0'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sector1'] !== null ? autolinker.link(feature.properties['sector1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sector2'] !== null ? autolinker.link(feature.properties['sector2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sector3'] !== null ? autolinker.link(feature.properties['sector3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fechaErrad'] !== null ? autolinker.link(feature.properties['fechaErrad'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_P_Oriente_Lotes_1_0() {
+            return {
+                pane: 'pane_P_Oriente_Lotes_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_P_Oriente_Lotes_1');
+        map.getPane('pane_P_Oriente_Lotes_1').style.zIndex = 401;
+        map.getPane('pane_P_Oriente_Lotes_1').style['mix-blend-mode'] = 'normal';
+        var layer_P_Oriente_Lotes_1 = new L.geoJson(json_P_Oriente_Lotes_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_P_Oriente_Lotes_1',
+            layerName: 'layer_P_Oriente_Lotes_1',
+            pane: 'pane_P_Oriente_Lotes_1',
+            onEachFeature: pop_P_Oriente_Lotes_1,
+            style: style_P_Oriente_Lotes_1_0,
+        });
+        bounds_group.addLayer(layer_P_Oriente_Lotes_1);
+        map.addLayer(layer_P_Oriente_Lotes_1);
+        function pop_Trazado_de_Canales_Drenaje_Actual_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LENGTH'] !== null ? autolinker.link(feature.properties['LENGTH'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Longitud'] !== null ? autolinker.link(feature.properties['Longitud'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Trazado_de_Canales_Drenaje_Actual_2_0() {
+            return {
+                pane: 'pane_Trazado_de_Canales_Drenaje_Actual_2',
+                opacity: 1,
+                color: 'rgba(31,120,180,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Trazado_de_Canales_Drenaje_Actual_2');
+        map.getPane('pane_Trazado_de_Canales_Drenaje_Actual_2').style.zIndex = 402;
+        map.getPane('pane_Trazado_de_Canales_Drenaje_Actual_2').style['mix-blend-mode'] = 'normal';
+        var layer_Trazado_de_Canales_Drenaje_Actual_2 = new L.geoJson(json_Trazado_de_Canales_Drenaje_Actual_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Trazado_de_Canales_Drenaje_Actual_2',
+            layerName: 'layer_Trazado_de_Canales_Drenaje_Actual_2',
+            pane: 'pane_Trazado_de_Canales_Drenaje_Actual_2',
+            onEachFeature: pop_Trazado_de_Canales_Drenaje_Actual_2,
+            style: style_Trazado_de_Canales_Drenaje_Actual_2_0,
+        });
+        bounds_group.addLayer(layer_Trazado_de_Canales_Drenaje_Actual_2);
+        map.addLayer(layer_Trazado_de_Canales_Drenaje_Actual_2);
+        function pop_Trazadodecanalesparaestudio_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Trazadodecanalesparaestudio_3_0() {
+            return {
+                pane: 'pane_Trazadodecanalesparaestudio_3',
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Trazadodecanalesparaestudio_3');
+        map.getPane('pane_Trazadodecanalesparaestudio_3').style.zIndex = 403;
+        map.getPane('pane_Trazadodecanalesparaestudio_3').style['mix-blend-mode'] = 'normal';
+        var layer_Trazadodecanalesparaestudio_3 = new L.geoJson(json_Trazadodecanalesparaestudio_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Trazadodecanalesparaestudio_3',
+            layerName: 'layer_Trazadodecanalesparaestudio_3',
+            pane: 'pane_Trazadodecanalesparaestudio_3',
+            onEachFeature: pop_Trazadodecanalesparaestudio_3,
+            style: style_Trazadodecanalesparaestudio_3_0,
+        });
+        bounds_group.addLayer(layer_Trazadodecanalesparaestudio_3);
+        map.addLayer(layer_Trazadodecanalesparaestudio_3);
+        function pop_PuntosAjuste_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PuntosAjuste_4_0() {
+            return {
+                pane: 'pane_PuntosAjuste_4',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(255,127,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,127,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_PuntosAjuste_4');
+        map.getPane('pane_PuntosAjuste_4').style.zIndex = 404;
+        map.getPane('pane_PuntosAjuste_4').style['mix-blend-mode'] = 'normal';
+        var layer_PuntosAjuste_4 = new L.geoJson(json_PuntosAjuste_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PuntosAjuste_4',
+            layerName: 'layer_PuntosAjuste_4',
+            pane: 'pane_PuntosAjuste_4',
+            onEachFeature: pop_PuntosAjuste_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_PuntosAjuste_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PuntosAjuste_4);
+        map.addLayer(layer_PuntosAjuste_4);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/PuntosAjuste_4.png" /> PuntosAjuste': layer_PuntosAjuste_4,'<img src="legend/Trazadodecanalesparaestudio_3.png" /> Trazado de canales - para estudio': layer_Trazadodecanalesparaestudio_3,'<img src="legend/Trazado_de_Canales_Drenaje_Actual_2.png" /> Trazado_de_Canales_Drenaje_Actual': layer_Trazado_de_Canales_Drenaje_Actual_2,'<img src="legend/P_Oriente_Lotes_1.png" /> P_Oriente_Lotes': layer_P_Oriente_Lotes_1,"Google.cn Normal": layer_GooglecnNormal_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_P_Oriente_Lotes_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['nombre'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['nombre']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_P_Oriente_Lotes_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_P_Oriente_Lotes_1]);
+        map.on("zoomend", function(){
+            resetLabels([layer_P_Oriente_Lotes_1]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_P_Oriente_Lotes_1]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_P_Oriente_Lotes_1]);
+        });
+        </script>
+                </div>
+                <div class="col-2">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                              Informaciòn
+                            </button>
+                          </h2>
+                          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                          </div>
+                        </div>
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                              Odjetivos
+                            </button>
+                          </h2>
+                          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                          </div>
+                        </div>
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                              Accordion Item #3
+                            </button>
+                          </h2>
+                          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>
